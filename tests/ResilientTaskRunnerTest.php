@@ -67,7 +67,7 @@ class ResilientTaskRunnerTest extends TestCase
 
         $runner->run($procedure);
 
-        $this->assertEquals($executionTimes, $runner->getCurrentTries());
+        $this->assertTrue($runner->maxTriesExhausted());
     }
 
     /**
