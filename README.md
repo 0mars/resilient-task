@@ -6,7 +6,7 @@
 [![PHPv](https://img.shields.io/packagist/php-v/eshta/resilient-task.svg)](http://www.php.net)
 [![Downloads](https://img.shields.io/packagist/dt/eshta/resilient-task.svg)](https://packagist.org/packages/eshta/resilient-task)
 
-TODO: Project description
+Resilient Task Runner, A circuit breaker implementation, highly configurable task runner with number of max retries, back-off factor, maximum sleep time, and starting sleep time.
 
 ## Usage
 
@@ -18,13 +18,32 @@ $ composer require eshta/resilient-task
 
 ## Example
 ```php
-$procedure = function() use (&$executionTimes) {
-            $executionTimes++;
-            return $executionTimes;
+use GuzzleHttp\Exception\ConnectException;
+
+
+$task = function() {
+    try {
+        $response = $client->request('GET', 'https://github.com/_abc_123_404');
+
+        return $response;
+    } catch (ConnectException $e) {
+        echo Psr7\str($e->getRequest());
+    }
 };
 
-$runner = new ResilientTaskRunner(50, 60, 0.5);
+$runner = new ResilientTaskRunner(10, 16, 0.5);
+$response = $runner->run($task);
+
+if ($runner->maxTriesExhausted()) {
+    throw new MyFavouriteException('Service call failed!');
+}
 ```
+- try 10 times at most
+- maximum sleep time between retries 16 seconds
+- first sleep time is half a second
+- back-off factor [2 default]: double sleeping time after each failed attempt
+
+**Note:**: the runner will only stop when there is a non-null result returned by the task
 
 ## Contributing
 See [CONTRIBUTING](CONTRIBUTING.md) and [Code of Conduct](CONDUCT.md),
