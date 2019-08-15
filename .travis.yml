@@ -1,0 +1,20 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+
+install:
+  - composer install --no-interaction --prefer-dist
+
+script:
+  - make build-travis
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

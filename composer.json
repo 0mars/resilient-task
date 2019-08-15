@@ -1,0 +1,42 @@
+{
+    "name": "eshta/resilient-task",
+    "type": "library",
+    "description": "Resilient Task Runner, A circuit breaker implementation, highly configurable task runner with number of max retries, back-off factor, maximum sleep time, and starting sleep time.",
+    "keywords": ["resilient", "task", "resilient process", "resilient procedure", "circuit breaker", "circuit-breaker", "circuit breaker pattern"],
+    "homepage": "https://github.com/eshta/resilient-task",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omar Shaban",
+            "email": "omars@php.net"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "squizlabs/php_codesniffer": "^3.0",
+        "phpmd/phpmd": "^2.7"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Eshta\\ResilientTask\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "Eshta\\ResilientTask\\Tests\\": "tests/" }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
