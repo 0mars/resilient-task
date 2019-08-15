@@ -2,7 +2,7 @@
     "name": "eshta/resilient-task",
     "type": "library",
     "description": "Resilient Task Runner, A circuit breaker implementation, highly configurable task runner with number of max retries, back-off factor, maximum sleep time, and starting sleep time.",
-    "keywords": ["resilient", "task", "resilient process", "resilient procedure", "circuit breaker", "circuit-breaker"],
+    "keywords": ["resilient", "task", "resilient process", "resilient procedure", "circuit breaker", "circuit-breaker", "circuit breaker pattern"],
     "homepage": "https://github.com/eshta/resilient-task",
     "license": "MIT",
     "authors": [
