@@ -34,7 +34,7 @@ $task = function() {
 $runner = new ResilientTaskRunner(10, 16, 0.5);
 $response = $runner->run($task);
 
-if ($runner->maxTriesExhausted()) {
+if (is_null($response)) {
     throw new MyFavouriteException('Service call failed!');
 }
 ```
@@ -43,7 +43,7 @@ if ($runner->maxTriesExhausted()) {
 - first sleep time is half a second
 - back-off factor [2 default]: double sleeping time after each failed attempt
 
-**Note:**: the runner will only stop when there is a non-null result returned by the task
+**Note:**: the runner will only stop when there is a non-null result returned by the task, or the max tries have been exhausted
 
 ## Contributing
 See [CONTRIBUTING](CONTRIBUTING.md) and [Code of Conduct](CONDUCT.md),
