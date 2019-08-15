@@ -22,6 +22,9 @@ mess: ## Run mess detector
 check-mess: ## Run mess detector
 	./vendor/bin/phpmd src text ./phpmd.xml
 
+test-coverage: ## Run travis test suite (not tested)
+	./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
 build:
 	$(MAKE) cs
 	$(MAKE) mess
