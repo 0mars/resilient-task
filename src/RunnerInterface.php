@@ -12,4 +12,11 @@ interface RunnerInterface
      * @return mixed|null
      */
     public function run(callable $task);
+
+    /**
+     * Concludes a failure after exhausting all tries
+     *
+     * @return bool
+     */
+    public function maxTriesExhausted(): bool;
 }
