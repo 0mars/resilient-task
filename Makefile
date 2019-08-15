@@ -27,7 +27,7 @@ build:
 	$(MAKE) mess
 	$(MAKE) test
 
-travis-build:
+build-travis:
 	$(MAKE) cs
 	$(MAKE) mess
 	$(MAKE) test-coverage
