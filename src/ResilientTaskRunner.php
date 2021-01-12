@@ -1,6 +1,6 @@
 <?php
-namespace Eshta\ResilientTask;
 
+namespace Eshta\ResilientTask;
 
 use InvalidArgumentException;
 
@@ -46,8 +46,8 @@ class ResilientTaskRunner implements RunnerInterface
     protected $currentTries = 0;
 
     /**
-     * @param int $maxTries
-     * @param int $maxSleepTime
+     * @param int   $maxTries
+     * @param int   $maxSleepTime
      * @param float $startingSleepTime
      * @param float $backOffFactor
      */
@@ -121,8 +121,8 @@ class ResilientTaskRunner implements RunnerInterface
     }
 
     /**
-     * @param int $min
-     * @param int $value
+     * @param int    $min
+     * @param int    $value
      * @param string $paramName
      */
     private function assertGreaterOrEqualThan(int $min, int $value, $paramName = '')

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Eshta\ResilientTask\Exception;
 
 use Exception;
