@@ -82,10 +82,10 @@ class ResilientTaskRunner implements RunnerInterface
         $this->reset();
         while ($this->currentTries < $this->maxTries) {
             $result = $task();
-            $this->currentTries++;
             if ($result !== null) {
                 return $result;
             }
+            $this->currentTries++;
             sleep($this->getTimeToSleep());
         }
     }

@@ -34,7 +34,7 @@ $task = function() {
 $runner = new ResilientTaskRunner(10, 16, 0.5);
 $response = $runner->run($task);
 
-if (is_null($response)) {
+if ($runner->maxTriesExhausted()) {
     throw new MyFavouriteException('Service call failed!');
 }
 ```
