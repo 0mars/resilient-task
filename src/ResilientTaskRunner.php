@@ -1,5 +1,8 @@
 <?php
+
 namespace Eshta\ResilientTask;
+
+use InvalidArgumentException;
 
 class ResilientTaskRunner implements RunnerInterface
 {
@@ -43,15 +46,19 @@ class ResilientTaskRunner implements RunnerInterface
     protected $currentTries = 0;
 
     /**
-     * @param int $maxTries
-     * @param int $maxSleepTime
-     * @param int $startingSleepTime
-     * @param int $backOffFactor
+     * @param int   $maxTries
+     * @param int   $maxSleepTime
+     * @param float $startingSleepTime
+     * @param float $backOffFactor
      */
-    public function __construct($maxTries, $maxSleepTime, $startingSleepTime = 10, $backOffFactor = 2)
+    public function __construct(int $maxTries, int $maxSleepTime, float $startingSleepTime = 10, float $backOffFactor = 2)
     {
+        $this->assertGreaterOrEqualThan(1, $maxTries, 'maxTries');
         $this->maxTries = $maxTries;
+        $this->assertGreaterOrEqualThan(0, $maxSleepTime, 'maxSleepTime');
         $this->maxSleepTime = $maxSleepTime;
+        $this->assertGreaterOrEqualThan(0, $startingSleepTime, 'startingSleepTime');
+        $this->assertGreaterOrEqualThan(1, $backOffFactor, 'backOffFactor');
         $this->currentSleepTime = $this->startingSleepTime = $startingSleepTime/$backOffFactor;
         $this->backOffFactor = $backOffFactor;
     }
@@ -111,5 +118,17 @@ class ResilientTaskRunner implements RunnerInterface
     public function maxTriesExhausted(): bool
     {
         return $this->currentTries === $this->maxTries;
+    }
+
+    /**
+     * @param int    $min
+     * @param int    $value
+     * @param string $paramName
+     */
+    private function assertGreaterOrEqualThan(int $min, int $value, $paramName = '')
+    {
+        if ($value < $min) {
+            throw new InvalidArgumentException(sprintf('%s : "%s" must be greater or equal than "%s"', $paramName, $value, $min));
+        }
     }
 }
