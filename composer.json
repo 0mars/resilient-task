@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4" : {
-            "Eshta\\ResilientTask\\": "src/"
+            "Eshta\\": "src/Eshta"
         }
     },
     "autoload-dev": {
